@@ -3,7 +3,9 @@ python RogueLike
 right, left, up, down
 ESC = quit
 
-Tutorial part 2
+https://rogueliketutorials.com/tutorials/tcod/v2/part-2/
 
+---siit on jäänud pooleli ~50% peal --next step: GameMap
 
-ALSKDaslkdn
+Now let’s use our newly created tiles by creating our map class. Create a file called game_map.py and fill it with the following:
+
