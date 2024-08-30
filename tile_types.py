@@ -25,8 +25,10 @@ def new_tile(
     transparent: int,
     dark: Tuple[int, Tuple[int, int, int], Tuple[int, int, int]],
     light: Tuple[int, Tuple[int, int, int], Tuple[int, int, int]],
-) -> np.ndarray:
+) -> np.ndarray: #individual tile types
     return np.array((walkable, transparent, dark, light), dtype=tile_dt)
+
+    SHROUD = np.array((ord(" "), (255, 255, 255), (0, 0, 0)), dtype=graphic_dt) # SHROUD represents unexplored, unseen tiles
 
 SHROUD = np.array((ord(" "), (255, 255, 255), (0, 0, 0)), dtype=graphic_dt)
 
