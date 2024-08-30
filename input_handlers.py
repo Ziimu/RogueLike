@@ -1,46 +1,30 @@
-from typing import Optional, Set
+from typing import Optional
+
 import tcod.event
-from actions import Action, EscapeAction, MovementAction
+
+from actions import Action, BumpAction, EscapeAction
+
 
 class EventHandler(tcod.event.EventDispatch[Action]):
-    def __init__(self):
-        super().__init__()
-        self.pressed_keys: Set[int] = set()
-
     def ev_quit(self, event: tcod.event.Quit) -> Optional[Action]:
-        return EscapeAction()
+        raise SystemExit()
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
+        action: Optional[Action] = None
+
         key = event.sym
 
-        # Check if ESCAPE is pressed to exit the game
-        if key == tcod.event.K_ESCAPE:
-            return EscapeAction()
+        if key == tcod.event.K_UP:
+            action = BumpAction(dx=0, dy=-1)
+        elif key == tcod.event.K_DOWN:
+            action = BumpAction(dx=0, dy=1)
+        elif key == tcod.event.K_LEFT:
+            action = BumpAction(dx=-1, dy=0)
+        elif key == tcod.event.K_RIGHT:
+            action = BumpAction(dx=1, dy=0)
 
-        # Otherwise, add the key to the set of pressed keys
-        self.pressed_keys.add(key)
-        return self.handle_movement()
+        elif key == tcod.event.K_ESCAPE:
+            action = EscapeAction()
 
-    def ev_keyup(self, event: tcod.event.KeyUp) -> Optional[Action]:
-        # Remove the key from the set when released
-        self.pressed_keys.discard(event.sym)
-        return None
-
-    def handle_movement(self) -> Optional[Action]:
-        dx, dy = 0, 0
-
-        if tcod.event.K_UP in self.pressed_keys:
-            dy -= 1
-        if tcod.event.K_DOWN in self.pressed_keys:
-            dy += 1
-        if tcod.event.K_LEFT in self.pressed_keys:
-            dx -= 1
-        if tcod.event.K_RIGHT in self.pressed_keys:
-            dx += 1
-
-        # If there's any movement, return a MovementAction
-        if dx != 0 or dy != 0:
-            return MovementAction(dx=dx, dy=dy)
-
-        # Return None if no movement was detected
-        return None
+        # No valid key was pressed
+        return action
