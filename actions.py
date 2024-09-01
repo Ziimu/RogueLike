@@ -29,6 +29,10 @@ class Action:
 class EscapeAction(Action):
     def perform(self) -> None:
         raise SystemExit()
+    
+class WaitAction(Action):
+    def perform(self) -> None:
+        pass
 
 
 class ActionWithDirection(Action):
