@@ -1,6 +1,7 @@
-from components.ai import HostileEnemy
+from components.ai import HostileEnemy, BossAI
 from components.fighter import Fighter
 from entity import Actor
+
 
 player = Actor(
    char="@",
@@ -15,7 +16,7 @@ orc = Actor(
    color=(0, 127, 0),
    name="Orc",
    ai_cls=HostileEnemy,
-   fighter=Fighter(hp=10, defense=0, power=3),
+   fighter=Fighter(hp=10, defense=0, power=0),
 )
 
 troll = Actor(
@@ -23,7 +24,16 @@ troll = Actor(
    color=(0, 127, 0),
    name="Troll",
    ai_cls=HostileEnemy,
-   fighter=Fighter(hp=16, defense=1, power=4),
+   fighter=Fighter(hp=16, defense=1, power=0),
+)
+
+boss = Actor(
+    char="@",
+    color=(255, 0, 0),  # Color can be adjusted as desired
+    name="Boss",
+    ai_cls=BossAI,
+    fighter=Fighter(hp=30, defense=2, power=0),  # Stronger stats for the boss
+
 )
 
 #player = Entity(char="@", color=(0, 0, 0), name="PLayer", blocks_movement=True)

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 import random
 from typing import Iterator, List, Tuple, TYPE_CHECKING
 
@@ -42,11 +43,12 @@ class RectangularRoom:
         )
 
 def place_entities(
-   room: RectangularRoom, dungeon: GameMap, maximum_monsters: int,
-) -> None:
+   room: RectangularRoom, dungeon: GameMap, maximum_monsters: int, boss_placed: bool
+) -> bool:
+   """Place entities in a room, including one boss if not already placed."""
    number_of_monsters = random.randint(0, maximum_monsters)
 
-   for i in range(number_of_monsters):
+   for _ in range(number_of_monsters):
        x = random.randint(room.x1 + 1, room.x2 - 1)
        y = random.randint(room.y1 + 1, room.y2 - 1)
 
@@ -54,7 +56,17 @@ def place_entities(
            if random.random() < 0.8:
                entity_factories.orc.spawn(dungeon, x, y)
            else:
-               entity_factories.troll.spawn(dungeon, x, y) 
+               entity_factories.troll.spawn(dungeon, x, y)
+   
+   # Place the boss if not yet placed
+   if not boss_placed:
+       x = random.randint(room.x1 + 1, room.x2 - 1)
+       y = random.randint(room.y1 + 1, room.y2 - 1)
+       if not any(entity.x == x and entity.y == y for entity in dungeon.entities):
+           entity_factories.boss.spawn(dungeon, x, y)
+           return True  # Boss has been placed
+
+   return boss_placed
 
 def tunnel_between(
     start: Tuple[int, int], end: Tuple[int, int]
@@ -89,6 +101,7 @@ def generate_dungeon(
    dungeon = GameMap(engine, map_width, map_height, entities=[player])
 
    rooms: List[RectangularRoom] = []
+   boss_placed = False  # Track if the boss has been placed
 
    for r in range(max_rooms):
        room_width = random.randint(room_min_size, room_max_size)
@@ -115,8 +128,9 @@ def generate_dungeon(
            # Dig out a tunnel between this room and the previous one.
            for x, y in tunnel_between(rooms[-1].center, new_room.center):
                dungeon.tiles[x, y] = tile_types.floor
-               
-       place_entities(new_room, dungeon, max_monsters_per_room)
+
+       # Place entities in the room, including potentially the boss
+       boss_placed = place_entities(new_room, dungeon, max_monsters_per_room, boss_placed)
 
        # Finally, append the new room to the list.
        rooms.append(new_room)
