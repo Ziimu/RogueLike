@@ -13,7 +13,7 @@ player = Actor(
 orc = Actor(
    char="o",
    color=(0, 127, 0),
-   name="Orc",
+   name="ORC",
    ai_cls=HostileEnemy,
    fighter=Fighter(hp=10, defense=0, power=3),
 )
@@ -21,7 +21,7 @@ orc = Actor(
 troll = Actor(
    char="T",
    color=(0, 127, 0),
-   name="Troll",
+   name="TROLL",
    ai_cls=HostileEnemy,
    fighter=Fighter(hp=16, defense=1, power=4),
 )
