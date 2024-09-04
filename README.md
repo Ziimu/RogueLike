@@ -1,4 +1,4 @@
-Tutorial 7 tehtud. Mouse ei tööta, press V
+Tutorial 7 tehtud. Mouse ei tööta, press V.
 
 // delete branch locally
 git branch -d localBranchName
