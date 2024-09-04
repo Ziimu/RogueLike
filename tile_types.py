@@ -35,7 +35,7 @@ floor = new_tile(
    walkable=True,
    transparent=True,
    dark=(ord(" "), (255, 255, 255), (50, 50, 150)),
-   light=(ord(" "), (255, 255, 255), (200, 180, 50)),
+   light=(ord(" "), (255, 255, 255), (222, 224, 184)), #see peaks olema FOV värv (200, 180, 50)
 
 )
 
