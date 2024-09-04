@@ -1,5 +1,4 @@
-1) 9 levelit
-2) igas levelis nö Boss
+Tutorial 7 tehtud. Mouse ei tööta, press V
 
 // delete branch locally
 git branch -d localBranchName
