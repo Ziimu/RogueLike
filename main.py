@@ -20,7 +20,7 @@ def main():
     room_min_size = 6
     max_rooms = 30
     # min_rooms = ??!?!?
-    max_monsters_per_room = 2
+    max_monsters_per_room = 0
 
     tileset = tcod.tileset.load_tilesheet(
         "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
@@ -44,7 +44,7 @@ def main():
        engine=engine
    )
     
-    engine.update_fov
+    #engine.update_fov
     
     with tcod.context.new_terminal(
         screen_width,

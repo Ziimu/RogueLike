@@ -7,7 +7,7 @@ import tcod.constants
 
 from tcod.context import Context
 from tcod.console import Console
-from tcod.map import compute_fov
+#from tcod.map import compute_fov
 
 from input_handlers import MainGameEventHandler
 
@@ -32,16 +32,19 @@ class Engine:
 
    def update_fov(self) -> None:
        # Recompute the visible area based on the players point of view.
-        self.game_map.visible[:] = tcod.map.compute_fov(
-            self.game_map.tiles["transparent"],
-            (self.player.x, self.player.y),
-            radius=5,
-            light_walls=False,
-            algorithm=tcod.constants.FOV_SYMMETRIC_SHADOWCAST,
-        )
+        #self.game_map.visible[:] = tcod.map.compute_fov(
+            #self.game_map.tiles["transparent"],
+            #(self.player.x, self.player.y),
+           # radius=8,
+            #light_walls=False,
+            #algorithm=tcod.constants.FOV_SYMMETRIC_SHADOWCAST,
+       # )
+        
+        
         # If a tile is "visible" it should be added to "explored".
         self.game_map.explored |= self.game_map.visible
 
+    
    def render(self, console: Console, context: Context) -> None:
         self.game_map.render(console)
         
@@ -51,6 +54,7 @@ class Engine:
             string=f"HP: {self.player.fighter.hp}/{self.player.fighter.max_hp}",
 
         )
+
 
     
 

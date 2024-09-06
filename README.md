@@ -1,4 +1,3 @@
-boss 2 .... boss 2 töötab aga boss leiab su liiiga kiiresti üles, 
-tuleks muuta bossi field of visionit või et boss hakkab liikuma ja otsima random kohtadest vmidagi sellist
+BOSS AI TEST
 
-orcid ja trollid tundub norm
+boss saab liikuda diagonaalis, leiab su päris kiiresti sedasi üles

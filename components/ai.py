@@ -95,3 +95,5 @@ class BossAI(BaseAI):
 
         # If no path is found or the player is unreachable, wait
         return WaitAction(self.entity).perform()
+
+

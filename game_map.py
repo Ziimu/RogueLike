@@ -20,14 +20,18 @@ class GameMap:
         self.width, self.height = width, height
         self.entities = set(entities)
         self.tiles = np.full((width, height), fill_value=tile_types.wall, order="F")
-        
+
+        self.explored = np.full((width, height), True, order="F")  # Make all tiles explored
+        self.visible = np.full((width, height), True, order="F")   # Make all tiles visible
+        """   
         self.visible = np.full(
            (width, height), fill_value=False, order="F"
        )  # Tiles the player can currently see
         self.explored = np.full(
            (width, height), fill_value=False, order="F"
        )  # Tiles the player has seen before
-
+     """
+        
     @property
     def actors(self) -> Iterator[Actor]:
         yield from (
@@ -70,7 +74,7 @@ class GameMap:
        """
         console.tiles_rgb[0 : self.width, 0 : self.height] = np.select(
            condlist=[self.visible, self.explored],
-           choicelist=[self.tiles["light"], self.tiles["dark"]],
+           choicelist=[self.tiles["light"], self.tiles["light"]],
            default=tile_types.SHROUD,
        )
         
