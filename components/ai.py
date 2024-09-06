@@ -63,3 +63,39 @@ class HostileEnemy(BaseAI):
            ).perform()
 
        return WaitAction(self.entity).perform()
+
+
+class BossAI(BaseAI):
+    def __init__(self, entity: Actor):
+        super().__init__(entity)
+        self.stationary_turns = 20  # The number of turns the boss stays in place
+        self.path: List[Tuple[int, int]] = []  # Initialize path for the boss
+
+    def perform(self) -> None:
+        # If the boss still has stationary turns left, decrement and do nothing
+        if self.stationary_turns > 0:
+            self.stationary_turns -= 1
+            return WaitAction(self.entity).perform()
+
+        # After stationary turns are over, boss should actively seek the player
+        target = self.engine.player
+        dx = target.x - self.entity.x
+        dy = target.y - self.entity.y
+        distance = max(abs(dx), abs(dy))  # Chebyshev distance
+
+        if distance <= 1:
+            # If the player is within attack range, perform a melee attack
+            return MeleeAction(self.entity, dx, dy).perform()
+        else:
+            # Calculate path towards the player regardless of visibility
+            self.path = self.get_path_to(target.x, target.y)
+
+        if self.path:
+            # Follow the path to the player
+            dest_x, dest_y = self.path.pop(0)
+            return MovementAction(
+                self.entity, dest_x - self.entity.x, dest_y - self.entity.y,
+            ).perform()
+
+        # If no path is found or the player is unreachable, wait
+        return WaitAction(self.entity).perform()

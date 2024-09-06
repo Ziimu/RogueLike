@@ -1,4 +1,4 @@
-from components.ai import HostileEnemy
+from components.ai import HostileEnemy, BossAI
 from components.consumable import HealingConsumable
 from components.fighter import Fighter
 from components.inventory import Inventory
@@ -18,7 +18,7 @@ orc = Actor(
    color=(0, 127, 0),
    name="ORC",
    ai_cls=HostileEnemy,
-   fighter=Fighter(hp=10, defense=0, power=3),
+   fighter=Fighter(hp=5, defense=0, power=3),
    inventory=Inventory(capacity=0),
 )
 
@@ -27,8 +27,17 @@ troll = Actor(
    color=(0, 127, 0),
    name="TROLL",
    ai_cls=HostileEnemy,
-   fighter=Fighter(hp=16, defense=1, power=4),
+   fighter=Fighter(hp=5, defense=0, power=3),
    inventory=Inventory(capacity=0),
+)
+
+boss = Actor(
+    char="@",
+    color=(255, 0, 0),  # Color can be adjusted as desired
+    name="Boss",
+    ai_cls=BossAI,
+    fighter=Fighter(hp=10, defense=0, power=3),  # Stronger stats for the boss
+    inventory=Inventory(capacity=0),
 )
 
 health_potion = Item(
