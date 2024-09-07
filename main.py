@@ -23,12 +23,12 @@ def main():
     max_rooms = 30
     # min_rooms = ??!?!?
     max_monsters_per_room = 2   #kollide arv
-    max_items_per_room = 2       #itemite arv
-
+    max_items_per_room = 2       #itemite arv Kai-1280x400-v2_7512b5
+    
     tileset = tcod.tileset.load_tilesheet(
-        "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
+        "dejavu16x16_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
-
+    
 
     player = copy.deepcopy(entity_factories.player)
     
