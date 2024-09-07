@@ -104,7 +104,7 @@ class ActionWithDirection(Action):
     def perform(self) -> None:
         raise NotImplementedError()
 
-
+""" originaal !!!
 class MeleeAction(ActionWithDirection):
     def perform(self) -> None:
         target = self.target_actor
@@ -114,21 +114,53 @@ class MeleeAction(ActionWithDirection):
         damage = self.entity.fighter.power - target.fighter.defense
 
         attack_desc = f"{self.entity.name.upper()} attacks {target.name}"
+        
         if self.entity is self.engine.player:
-            attack_color = color.player_atk
+            attack_color = color.player_atk #valge
         else:
-            attack_color = color.enemy_atk
+            attack_color = color.enemy_atk #punane
         
         if damage > 0:
            self.engine.message_log.add_message(
-               f"{attack_desc} for {damage} hit points,", attack_color
+               f"{attack_desc} for {damage} hit points.)", attack_color
            ) 
            target.fighter.hp -= damage
         else:
             self.engine.message_log.add_message(
                 f"{attack_desc} but does no damage.", attack_color
             )
+"""
+class MeleeAction(ActionWithDirection):
+    def perform(self) -> None:
+        target = self.target_actor
+        if not target:
+            return exceptions.Impossible("Nothing to attack.")
 
+        damage = self.entity.fighter.power - target.fighter.defense
+
+        attack_desc = f"{self.entity.name.upper()} {self.entity.fighter.hp} attacks {target.name}."
+        
+        if self.entity is self.engine.player:
+            attack_color = color.player_atk #valge
+        else:
+            attack_color = color.enemy_atk #punane
+        
+        if damage > 0:
+            
+           #max_hp = target.fighter.max_hp
+           #current_hp = target.fighter.hp
+           target.fighter.hp -= damage
+           target.fighter.hp = max(0, target.fighter.hp)
+                       
+           self.engine.message_log.add_message(
+               f"{attack_desc} for {damage} hit points.)", attack_color
+           )          
+        else:
+            self.engine.message_log.add_message(
+                f"{attack_desc} but does no damage.", attack_color
+            )     
+            
+            
 class MovementAction(ActionWithDirection):
     def perform(self) -> None:
         dest_x, dest_y = self.dest_xy
