@@ -6,6 +6,6 @@ i = inventory.
 d = drop items.
 g = grab items from the floor
 
-Siin on BOSS jee
+Siin on BOSS jee.  Tahax näidata mis ja kui palju HP-d on kollidel
 
  
