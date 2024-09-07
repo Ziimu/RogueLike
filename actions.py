@@ -5,6 +5,8 @@ from typing import Optional, Tuple, TYPE_CHECKING
 import color
 import exceptions
 
+
+
 if TYPE_CHECKING:
     from engine import Engine
     from entity import Actor, Entity, Item
@@ -104,33 +106,8 @@ class ActionWithDirection(Action):
     def perform(self) -> None:
         raise NotImplementedError()
 
-""" originaal !!!
-class MeleeAction(ActionWithDirection):
-    def perform(self) -> None:
-        target = self.target_actor
-        if not target:
-            return exceptions.Impossible("Nothing to attack.")
 
-        damage = self.entity.fighter.power - target.fighter.defense
-
-        attack_desc = f"{self.entity.name.upper()} attacks {target.name}"
-        
-        if self.entity is self.engine.player:
-            attack_color = color.player_atk #valge
-        else:
-            attack_color = color.enemy_atk #punane
-        
-        if damage > 0:
-           self.engine.message_log.add_message(
-               f"{attack_desc} for {damage} hit points.)", attack_color
-           ) 
-           target.fighter.hp -= damage
-        else:
-            self.engine.message_log.add_message(
-                f"{attack_desc} but does no damage.", attack_color
-            )
-"""
-class MeleeAction(ActionWithDirection):
+class MeleeAction(ActionWithDirection): #see code on winner claude 3.5 sonnet
     def perform(self) -> None:
         target = self.target_actor
         if not target:
@@ -150,9 +127,11 @@ class MeleeAction(ActionWithDirection):
             target.fighter.hp = max(0, target.fighter.hp)
 
             if self.entity is self.engine.player:
-                self.engine.message_log.add_message(
-                    f"{attack_desc} for {damage} hit points. {target.name} has {target.fighter.hp} HP left.", attack_color
-                )
+                if target.fighter.hp > 0:
+                    self.engine.message_log.add_message(
+                        f"{attack_desc} for {damage} hit points. {target.name} has {target.fighter.hp} HP left.", attack_color
+                    )
+                # If target.fighter.hp == 0, we don't print anything here
             else:
                 self.engine.message_log.add_message(
                     f"{attack_desc} for {damage} hit points.", attack_color
@@ -161,7 +140,6 @@ class MeleeAction(ActionWithDirection):
             self.engine.message_log.add_message(
                 f"{attack_desc} but does no damage.", attack_color
             )
-            
 class MovementAction(ActionWithDirection):
     def perform(self) -> None:
         dest_x, dest_y = self.dest_xy
