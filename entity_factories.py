@@ -44,7 +44,7 @@ health_potion = Item(
    char="!",
    color=(127, 0, 255),
    name="Health Potion",
-   consumable=HealingConsumable(amount=4), #kui palju see healib
+   consumable=HealingConsumable(amount=10), #kui palju see healib
 )
 
 #player = Entity(char="@", color=(0, 0, 0), name="PLayer", blocks_movement=True)

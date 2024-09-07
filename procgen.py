@@ -42,10 +42,11 @@ class RectangularRoom:
         )
 
 def place_entities(
-   room: RectangularRoom, dungeon: GameMap, maximum_monsters: int, boss_placed: bool
+   room: RectangularRoom, dungeon: GameMap, maximum_monsters: int, maximum_items: int, boss_placed: bool
 ) -> bool:
    """Place entities in a room, including one boss if not already placed."""
    number_of_monsters = random.randint(0, maximum_monsters)
+   number_of_items = random.randint(0, maximum_items)
 
    for _ in range(number_of_monsters):
        x = random.randint(room.x1 + 1, room.x2 - 1)
@@ -56,6 +57,17 @@ def place_entities(
                entity_factories.orc.spawn(dungeon, x, y)
            else:
                entity_factories.troll.spawn(dungeon, x, y)
+               
+               
+    #SIIA TULEVAD ITEMID       
+   for i in range(number_of_items): 
+       x = random.randint(room.x1 + 1, room.x2 - 1)
+       y = random.randint(room.y1 + 1, room.y2 - 1)
+
+       if not any(entity.x == x and entity.y == y for entity in dungeon.entities):
+           entity_factories.health_potion.spawn(dungeon, x, y)
+           
+           
    
    # Place the boss if not yet placed
    if not boss_placed:
@@ -66,6 +78,8 @@ def place_entities(
            return True  # Boss has been placed
 
    return boss_placed
+
+
 
 def tunnel_between(
     start: Tuple[int, int], end: Tuple[int, int]
@@ -132,7 +146,7 @@ def generate_dungeon(
        #place_entities(new_room, dungeon, max_monsters_per_room, max_items_per_room)
        
     # Place entities in the room, including potentially the boss
-       boss_placed = place_entities(new_room, dungeon, max_monsters_per_room, boss_placed)
+       boss_placed = place_entities(new_room, dungeon, max_monsters_per_room, max_items_per_room, boss_placed)
 
        # Finally, append the new room to the list.
        rooms.append(new_room)
