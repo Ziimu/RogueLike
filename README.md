@@ -1,5 +1,11 @@
 <<<<<<< HEAD
-Tutorial 7 tehtud. Mouse ei tööta, press V.
+https://rogueliketutorials.com/tutorials/tcod/v2/part-8/
+Tutorial 8 tehtud. Mouse ei tööta, press V.
+
+i = inventory
+g = get itmes
+d = drop items
+v = combat log
 
 // delete branch locally
 git branch -d localBranchName
