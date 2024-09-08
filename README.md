@@ -2,6 +2,8 @@
 https://rogueliketutorials.com/tutorials/tcod/v2/part-8/
 Tutorial 8 tehtud. Mouse ei tööta, press V.
 
+TUTORIAL BRANCH teeb Tutoriali järgi, BOSS3 -> seal on rohkem asju 
+
 i = inventory
 g = get itmes
 d = drop items
