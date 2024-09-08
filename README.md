@@ -1,4 +1,4 @@
-OG BOSS
+BOSS + SCROLLID
 
 (https://rogueliketutorials.com/tutorials/tcod/v2/part-7/)   ---Tehtud aga mouse over ei tööta. press V, 
 https://rogueliketutorials.com/tutorials/tcod/v2/part-8/ --tehud
