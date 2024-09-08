@@ -1,3 +1,5 @@
+OG värk
+
 (https://rogueliketutorials.com/tutorials/tcod/v2/part-7/)   ---Tehtud aga mouse over ei tööta. press V, 
 https://rogueliketutorials.com/tutorials/tcod/v2/part-8/ --tehud
 https://rogueliketutorials.com/tutorials/tcod/v2/part-9/ --> tehtud
