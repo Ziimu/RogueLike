@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Tutorial 7 tehtud. Mouse ei tööta, press V.
 
 // delete branch locally
@@ -72,3 +73,10 @@ The game concludes with the protagonist ascending from the depths, their fate sh
 
 End of Game
 "Descent into Shadows" is a narrative-driven roguelike/roguelite game where every decision influences the player's abilities, story, and ultimate fate. As players delve deeper into the circles of Hell, they must confront not only external foes but the very sins that brought them to this dark place.
+=======
+(https://rogueliketutorials.com/tutorials/tcod/v2/part-7/)   ---Tehtud aga mouse over ei tööta. press V, 
+https://rogueliketutorials.com/tutorials/tcod/v2/part-8/ --tehud
+--> bug --> kollid saavad diagonaalis kah rünnata.
+ Consume, Drop = Action(move) -> koll ründab
+ boss2 -> mingi boss AI ja boss character, vb BOSS -> kes teab.
+>>>>>>> TUTORIAL
