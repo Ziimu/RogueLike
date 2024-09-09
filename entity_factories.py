@@ -67,6 +67,13 @@ fireball_scroll = Item(
    name="Fireball Scroll",
    consumable=consumable.FireballDamageConsumable(damage=12, radius=3),
 )
+
+speed_potion = Item(
+    char="!",
+    color=(0, 100, 0),  # Dark green color
+    name="Speed Potion",
+    consumable=consumable.SpeedPotionConsumable(number_of_turns=2),
+)
 #player = Entity(char="@", color=(0, 0, 0), name="PLayer", blocks_movement=True)
 
 #orc = Entity(char="O", color=(0, 127, 0), name="Orc", blocks_movement=True) # 63, 127, 63

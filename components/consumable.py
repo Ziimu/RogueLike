@@ -6,6 +6,9 @@ import actions
 import color
 import components.ai
 import components.inventory
+
+from actions import ItemAction
+
 from components.base_component import BaseComponent
 from exceptions import Impossible
 from input_handlers import SingleRangedAttackHandler, AreaRangedAttackHandler
@@ -147,4 +150,35 @@ class FireballDamageConsumable(Consumable):
 
        if not targets_hit:
            raise Impossible("There are no targets in the radius.")
-       self.consume()       
+       self.consume()
+"""       
+class SpeedPotionConsumable(Consumable):
+    def __init__(self, number_of_turns: int):
+        self.number_of_turns = number_of_turns
+
+    def activate(self, action: ItemAction) -> None:
+        consumer = action.entity
+        
+        consumer.speed_turns = self.number_of_turns
+
+        self.engine.message_log.add_message(
+            f"You consume the speed potion. You feel faster for the next {self.number_of_turns} turns!",
+            color.status_effect_applied
+        )
+        self.consume()
+"""
+
+class SpeedPotionConsumable(Consumable):
+    def __init__(self, number_of_turns: int):
+        self.number_of_turns = number_of_turns
+
+    def activate(self, action: ItemAction) -> None:
+        consumer = action.entity
+        
+        consumer.speed_turns = self.number_of_turns + 1  # Add 1 to account for the current turn
+
+        self.engine.message_log.add_message(
+            f"You consume the speed potion. You feel faster for the next {self.number_of_turns} turns!",
+            color.status_effect_applied
+        )
+        self.consume()        

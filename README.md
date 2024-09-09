@@ -10,4 +10,6 @@ g = grab items from the floor
 
 Siin on BOSS jee.  Tahax näidata mis ja kui palju HP-d on kollidel
 
+speed potion töötab aga to consumib kõik potionid ära mis sul on inventoris
+
  
