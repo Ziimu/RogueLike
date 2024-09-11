@@ -10,4 +10,7 @@ g = grab items from the floor
 
 Siin on BOSS jee.  Tahax näidata mis ja kui palju HP-d on kollidel
 
- 
+ class MainGameEventHandler(EventHandler):c--> siit pooleni part10
+-   def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
++   def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[ActionOrHandler]:
+        action: Optional[Action] = Non
